@@ -1,5 +1,7 @@
 const assert = require('assert');
 
+const RecipientsHandler = require('./sequences/recipients');
+
 /**
  * Sequence utility class.
  */
@@ -38,13 +40,17 @@ class SequenceHandler {
 
     const result = await this._client.post(url, { recipients });
 
-    if (result.statusCode != 200) {
+    if (result.statusCode !== 200) {
       throw new Error('failed to add recipients to Sequence, status: ' + result.statusCode);
     }
 
     // The individual status of adding each recipient is embedded in the
     // returned `recipients` property.
     return result.body.recipients;
+  }
+
+  get recipients() {
+    return new RecipientsHandler(this._client, this._sequenceID);
   }
 
 }
