@@ -1,0 +1,26 @@
+{
+  "name": "mixmax-api",
+  "version": "0.0.0",
+  "description": "Mixmax API wrapper",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ttacon/mixmax-api.git"
+  },
+  "keywords": [
+    "mixmax",
+    "api"
+  ],
+  "author": "Trey Tacon <ttacon@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ttacon/mixmax-api/issues"
+  },
+  "homepage": "https://github.com/ttacon/mixmax-api#readme",
+  "dependencies": {
+    "got": "^9.3.2"
+  }
+}
