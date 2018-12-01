@@ -1,48 +1,36 @@
+const assert = require('assert');
+
 let got = require('got');
 
+const SequenceHandler = require('./sequence');
+
+/**
+ * The top level utility class for Sequences.
+ */
 class SequencesHandler {
-  constructor(apiKey) {
-    assert(apiKey, 'apiKey must be provided');
 
-    this._apiKey = apiKey;
+  /**
+   * Creates the Sequences handler.
+   *
+   * @param {Client} client The authenticated client to use.
+   */
+  constructor(client) {
+    assert(client, 'client must be provided');
+
+    this._client = client;
   }
 
+  /**
+   * Returns an authenticated `Sequence` handler for the given Sequence.
+   *
+   * @param {String} id The ID of the Sequence to interact with.
+   * @returns {SequenceHandler} An authenticated `SequenceHandler`.
+   */
   sequence(id) {
-    return new SequenceHandler(this._apiKey, id);
+    return new SequenceHandler(this._client, id);
   }
-
 }
 
-class SequenceHandler {
-  constructor(apiKey, sequenceId) {
-    assert(apiKey, 'apiKey must be provided');
-    assert(sequenceId, 'sequenceId must be provided');
-
-    this._apiKey = apiKey;
-    this._sequenceId = sequenceId;
-  }
-
-  async addRecipients(recipients, {
-    scheduledAt = Date.now(),
-    enrich = false,
-    allowMissingVariables = false
-  } = {}) {
-    const url = `https://api.mixmax.com/v1/sequences/${this._sequenceId}/recipients/`;
-
-    const result = await got(url, {
-      headers: {
-        'X-API-Token': this._apiKey
-      },
-      json: true,
-      body: {
-        recipients
-      }
-    });
-
-    return result.body;
-  }
-
-}
 
 
 module.exports = SequencesHandler;
