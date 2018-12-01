@@ -46,7 +46,8 @@ class Client {
     return got(url, {
       headers: {
         'X-API-Token': this._apiKey
-      }      
+      },
+      json: true
     });
   }
 }
