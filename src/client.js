@@ -1,20 +1,19 @@
-const assert = require('assert');
+const assert = require("assert");
 
 // Not const for testing.
-let got = require('got');
+let got = require("got");
 
 /**
  * A utility client for sending API requests to Mixmax.
  */
 class Client {
-
   /**
    * Creates the Mixmax API client with the provided API key.
    *
    * @param {String} apiKey The API key to use to authenticate.
    */
   constructor(apiKey) {
-    assert(apiKey, 'apiKey must be provided');
+    assert(apiKey, "apiKey must be provided");
 
     this._apiKey = apiKey;
   }
@@ -27,13 +26,27 @@ class Client {
    * @returns {Promise<GotResponse>} The HTTP response.
    */
   async post(url, body) {
-    return got.post(url, {
+    return got.post(this.url(url), {
       headers: {
-        'X-API-Token': this._apiKey
+        "X-API-Token": this._apiKey
       },
       json: true,
       body
     });
+  }
+
+  async patch(url, body) {
+    return got.patch(this.url(url), {
+      headers: {
+        "X-API-Token": this._apiKey
+      },
+      json: true,
+      body
+    });
+  }
+
+  url(fragment) {
+    return `https://api.mixmax.com/v1/${fragment}`;
   }
 
   /**
@@ -43,9 +56,9 @@ class Client {
    * @returns {Promise<GotResponse>} The HTTP response.
    */
   async get(url) {
-    return got(url, {
+    return got(this.url(url), {
       headers: {
-        'X-API-Token': this._apiKey
+        "X-API-Token": this._apiKey
       },
       json: true
     });

@@ -1,14 +1,13 @@
-const assert = require('assert');
+const assert = require("assert");
 
-
-const Client = require('./src/client');
-const SequencesHandler = require('./src/sequences');
+const Client = require("./src/client");
+const SequencesHandler = require("./src/sequences");
+const ContactsHandler = require("./src/contacts");
 
 /**
  * Wrapper for the Mixmax API.
  */
 class MixmaxAPI {
-
   /**
    * Creates the Mixmax API wrapper.
    *
@@ -16,7 +15,7 @@ class MixmaxAPI {
    * with.
    */
   constructor(apiKey) {
-    assert(apiKey, 'apiKey must be provided');
+    assert(apiKey, "apiKey must be provided");
 
     this._client = new Client(apiKey);
   }
@@ -28,6 +27,15 @@ class MixmaxAPI {
    */
   get sequences() {
     return new SequencesHandler(this._client);
+  }
+
+  /**
+   * Returns an authenticated `Contacts` handler.
+   *
+   * @returns {ContactsHandler} An authenticated `Contacts` API utility.
+   */
+  get contacts() {
+    return new ContactsHandler(this._client);
   }
 }
 
