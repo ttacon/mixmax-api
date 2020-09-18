@@ -16,6 +16,7 @@ class Client {
     assert(apiKey, "apiKey must be provided");
 
     this._apiKey = apiKey;
+    this._host = "https://api.mixmax.com";
   }
 
   /**
@@ -46,7 +47,7 @@ class Client {
   }
 
   url(fragment) {
-    return `https://api.mixmax.com/v1/${fragment}`;
+    return `${this._host}/v1/${fragment}`;
   }
 
   /**
