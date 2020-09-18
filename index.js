@@ -1,8 +1,9 @@
 const assert = require("assert");
 
 const Client = require("./src/client");
-const SequencesHandler = require("./src/sequences");
 const ContactsHandler = require("./src/contacts");
+const SequencesHandler = require("./src/sequences");
+const OrgsHandler = require("./src/orgs");
 
 /**
  * Wrapper for the Mixmax API.
@@ -36,6 +37,15 @@ class MixmaxAPI {
    */
   get contacts() {
     return new ContactsHandler(this._client);
+  }
+
+  /**
+   * Returns an authenticated `Orgs` handler.
+   *
+   * @returns {OrgsHandler} An authenticated `Orgs` API utility.
+   */
+  get orgs() {
+    return new OrgsHandler(this._client);
   }
 }
 
