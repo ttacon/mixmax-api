@@ -63,6 +63,21 @@ class Client {
       json: true
     });
   }
+
+  /**
+   * Sends a DELETE request to Mixmax for the specified URL.
+   *
+   * @param {String} url The URL to DELETE.
+   * @returns {Promise<GotResponse>} The HTTP response.
+   */
+  async delete(url) {
+    return got.delete(this.url(url), {
+      headers: {
+        "X-API-Token": this._apiKey
+      },
+      json: true
+    });
+  }
 }
 
 module.exports = Client;
