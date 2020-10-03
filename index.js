@@ -4,6 +4,7 @@ const Client = require("./src/client");
 const ContactsHandler = require("./src/contacts");
 const SequencesHandler = require("./src/sequences");
 const OrgsHandler = require("./src/orgs");
+const PollsHandler = require("./src/polls");
 
 /**
  * Wrapper for the Mixmax API.
@@ -46,6 +47,15 @@ class MixmaxAPI {
    */
   get orgs() {
     return new OrgsHandler(this._client);
+  }
+
+  /**
+   * Returns an authenticated `Polls` handler.
+   *
+   * @returns {PollsHandler} An authenticated `Polls` API utility.
+   */
+  get polls() {
+    return new PollsHandler(this._client);
   }
 }
 
