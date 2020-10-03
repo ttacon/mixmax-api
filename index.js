@@ -6,6 +6,7 @@ const SequencesHandler = require("./src/sequences");
 const OrgsHandler = require("./src/orgs");
 const PollsHandler = require("./src/polls");
 const QAHandler = require("./src/qa");
+const YesNoHandler = require("./src/yesno");
 
 /**
  * Wrapper for the Mixmax API.
@@ -66,6 +67,15 @@ class MixmaxAPI {
    */
   get qa() {
     return new QAHandler(this._client);
+  }
+
+  /**
+   * Returns an authenticated `YesNo` handler.
+   *
+   * @returns {YesNoHandler} An authenticated `YesNo` API utility.
+   */
+  get yesno() {
+    return new YesNoHandler(this._client);
   }
 }
 
