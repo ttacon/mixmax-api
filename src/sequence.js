@@ -36,7 +36,7 @@ class SequenceHandler {
     enrich = false,
     allowMissingVariables = false
   } = {}) {
-    const url = `https://api.mixmax.com/v1/sequences/${this._sequenceID}/recipients/`;
+    const url = `sequences/${this._sequenceID}/recipients/`;
 
     const result = await this._client.post(url, { recipients });
 
