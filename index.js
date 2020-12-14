@@ -6,6 +6,7 @@ const SequencesHandler = require("./src/sequences");
 const OrgsHandler = require("./src/orgs");
 const PollsHandler = require("./src/polls");
 const QAHandler = require("./src/qa");
+const SidebarHandler = require("./src/sidebar");
 const YesNoHandler = require("./src/yesno");
 
 /**
@@ -67,6 +68,15 @@ class MixmaxAPI {
    */
   get qa() {
     return new QAHandler(this._client);
+  }
+
+    /**
+   * Returns an authenticated `Sidebar` handler.
+   *
+   * @returns {SidebarHandler} An authenticated `Sidebar` API utility.
+   */
+  get sidebars() {
+    return new SidebarHandler(this._client);
   }
 
   /**
